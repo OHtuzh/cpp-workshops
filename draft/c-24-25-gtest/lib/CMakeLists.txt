@@ -3,4 +3,5 @@ add_library(
     INTERFACE
     array.hpp
     algorithm.hpp
+    serialization.hpp
 )
