@@ -38,7 +38,7 @@ TEST(ARRAY_INIT, INIT_WITH_EXCEPTION) {
 TEST(ARRAY_ACCESS, ACCESS_VIA_BRACKETS) {
     ohtuzh::array<int, 5> array = {1, 2, 3, 4, 5};
     array[3] = 10;
-    ASSERT_EQ(array[3], 10);
+    ASSERT_EQ(array[3], 10) << "Access via brackets";
 }
 
 TEST(ARRAY_ACCESS, ACCESS_VIA_AT) {
