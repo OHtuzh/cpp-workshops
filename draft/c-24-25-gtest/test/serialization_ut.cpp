@@ -23,4 +23,27 @@ TEST(DESERIALIZE, SINGLE_DATA) {
     ASSERT_EQ(real, expected);
 }
 
-// TODO: cartesian product | ::testing::Combine
+class MyTestSuite : public ::testing::TestWithParam<std::tuple<std::string, std::vector<int32_t>, ohtuzh::state>> {};
+
+TEST_P(MyTestSuite, Combine) {
+    const auto& [name, numbers, state] = GetParam();
+    ohtuzh::data test_data(name, numbers, state);
+
+    std::stringstream ss;
+    test_data.serialize(ss);
+
+    ohtuzh::data deserialized_data;
+    deserialized_data.deserialize(ss);
+
+    ASSERT_EQ(test_data, deserialized_data);
+}
+
+INSTANTIATE_TEST_SUITE_P(
+    CombinedGroup,
+    MyTestSuite,
+    testing::Combine(
+        testing::Values("", "abc", "abcdefghqwe"),
+        testing::Values(std::vector<int32_t>{}, std::vector<int32_t>{1, 2, 3}, std::vector<int32_t>{1, 2, 3, 4, 5, 6, 7, 8}),
+        testing::Values(ohtuzh::state::kBad, ohtuzh::state::kOk)
+    )
+);
