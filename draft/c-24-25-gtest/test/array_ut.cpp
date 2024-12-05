@@ -55,7 +55,15 @@ TEST(ARRAY_ACCESS, ACCESS_VIA_AT) {
         ASSERT_TRUE(true);         \
     }                               \
 
+#define MY_ASSERT_CONTAINER_SIZE(container, expected)   \
+    ASSERT_EQ(container.size(), expected);              \
+
 TEST(ARRAY_ACCESS, ACCESS_VIA_AT_EXCEPTION) {
     ohtuzh::array<int, 5> array = {1, 2, 3, 4, 5};
     MY_ASSERT_ANY_THROW(array.at(6));
+}
+
+TEST(SIZE, MY_ASSERT) {
+    ohtuzh::array<int, 5> array = {1, 2, 3, 4, 5};
+    MY_ASSERT_CONTAINER_SIZE(array, 5);
 }
