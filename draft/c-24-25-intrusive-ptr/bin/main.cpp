@@ -34,6 +34,13 @@ public:
     ~SomeObjWithMethods() {
         std::cout << "dtor\n";
     }
+
+    int GetValue() {
+        return Value_;
+    }
+
+private:
+    int Value_ = 2;
 };
 
 int main(int argc, char** argv) {
@@ -53,5 +60,8 @@ int main(int argc, char** argv) {
     auto* objPtr = new SomeObjWithMethods();
     TIntrusivePtrViaMethods<SomeObjWithMethods> ptr1(objPtr);
     TIntrusivePtrViaMethods<SomeObjWithMethods> ptr2(objPtr);
+    TIntrusivePtrViaMethods<SomeObjWithMethods> ptr3 = ptr2;
+
+    std::cout << ptr1->GetValue() << std::endl;
 
 }

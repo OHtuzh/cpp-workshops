@@ -34,6 +34,16 @@ public:
         Ptr_->Ref();
     }
 
+    TIntrusivePtrViaMethods(const TIntrusivePtrViaMethods& other)
+        : Ptr_(other.Ptr_)
+    {
+        Ptr_->Ref();
+    }
+
+    TPointer operator->() {
+        return Ptr_;
+    }
+
     ~TIntrusivePtrViaMethods() {
         Ptr_->Unref();
     }
