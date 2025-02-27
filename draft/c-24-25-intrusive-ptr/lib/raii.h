@@ -6,7 +6,6 @@ public:
     TRAII(const T& action)
         : Action_(action) {}
 
-
     ~TRAII() {
         Action_();
     }
